@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>单词对对碰</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 卡片导航 -->
+        <div class="card-nav">
+            <!-- 课程选择器移到导航栏左侧 -->
+            <!-- 课程选择器直接展示 -->
+            <select id="lessonSelect" class="lesson-select-inline">
+                <option value="">选择课程</option>
+            </select>
+            <button class="nav-btn active" data-target="landuContainer">📖 朗读练习区</button>
+            <button class="nav-btn" data-target="gameBoardContainer">🎮 单词对对碰</button>
+            <button class="nav-btn" data-target="lianxiContainer">🎯 随机练习区</button>
+        </div>
+
+        <!-- 卡片内容区域 -->
+        <div class="card-content active" id="landuContainer">
+            <!--<h2>朗读练习区</h2>-->
+            <div class="landu-display" id="landuDisplay">
+                <div class="structure-display">
+                    <span class="part" id="part1"></span>
+                    <span class="plus">+</span>
+                    <span class="part" id="part2"></span>
+                    <span class="equals">=</span>
+                    <span class="result-hanzi" id="resultHanzi"></span>
+                </div>
+                <div class="pinyin-display" id="pinyinDisplay"></div>
+            </div>
+            <div class="landu-controls">
+                <button id="prevBtn">上一个</button>
+                <button id="readBtn">朗读</button>
+                <button id="nextBtn">下一个</button>
+                <span id="landuProgress"></span>
+            </div>
+            <!-- 课程选择器 -->
+            <!--<div class="landu-controls landu-lesson-select">
+                <select id="lessonSelect">
+                    <option value="">选择课程</option>
+                </select>
+            </div>-->
+            <!-- 新增汉字展示区域 -->
+            <div class="landu-hanzi-container">
+                <!--<h3>所有汉字列表</h3>-->
+                <div class="landu-hanzi-grid" id="landuHanziGrid"></div>
+            </div>
+        </div>
+
+        <div class="card-content" id="gameBoardContainer">
+           <!-- <h1>单词对对碰</h1>-->
+            <div class="game-board" id="gameBoard"></div>
+            <!--<div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>-->
+            <!-- 汉字组装提示功能  -->
+            <div class="hint-container">
+                <button id="toggleHintBtn" class="hint-toggle-btn">
+                    📖 显示汉字提示
+                </button>
+                <div id="hintContent" class="hint-content" style="display: none;">
+                    <div class="landu-hanzi-container">
+                        <div class="landu-hanzi-grid" id="gameHanziGrid"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-content" id="lianxiContainer">
+            <!--<h2>随机练习区域</h2>-->
+            <div class="lianxi-controls">
+                <button id="startLianxiBtn">开始随机练习</button>
+                <button id="nextLianxiBtn" style="display:none;">下一个</button>
+                <span id="lianxiProgress" style="margin-left: 20px;"></span>
+            </div>
+            <div class="lianxi-grid" id="lianxiGrid"></div>
+        </div>
+
+    </div>
+    <script src="hanzi-writer.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,945 @@
+/* style.css */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* 占满整个视口高度 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f8ff;
+}
+
+
+.container {
+    width: 90%; /* 默认占页面宽度的 90% */
+    max-width: 1200px; /* 最大宽度限制，防止桌面端过宽 */
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 卡片导航样式 */
+.card-nav {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+/* 课程选择器容器 */
+.lesson-select-wrapper {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-right: 20px;
+}
+/* 图标按钮样式 */
+.icon-btn {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-btn:hover {
+    background-color: #3a7bc8;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* 课程选择下拉菜单样式 */
+#lessonSelect {
+    position: absolute;
+    top: 5%;
+    left: 0;
+    width: 100px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 8px;
+    min-width: 180px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    z-index: 1000;
+    margin-top: 5px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+#lessonSelect option {
+    padding: 6px 10px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+#lessonSelect option:hover {
+    background-color: #f0f8ff;
+}
+.nav-btn {
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: #e0e0e0;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.nav-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.nav-btn.active {
+    background-color: #4a90e2;
+    box-shadow: 0 4px 8px rgba(74, 144, 226, 0.3);
+}
+
+/* 卡片内容区域 */
+.card-content {
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+
+.card-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 95%; /* 移动端更宽一些 */
+        padding: 15px;
+    }
+
+    .game-board {
+        grid-template-columns: repeat(3, 1fr); /* 移动端减少列数 */
+        gap: 8px;
+    }
+
+    h1 {
+        font-size: 24px; /* 减小标题字体 */
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .container {
+        width: 85%;
+    }
+
+    .game-board {
+        grid-template-columns: repeat(4, 1fr); /* 平板保持4列 */
+        gap: 10px;
+    }
+}
+
+@media (min-width: 1025px) {
+    .container {
+        width: 80%;
+    }
+
+    .game-board {
+        grid-template-columns: repeat(5, 1fr); /* 桌面端增加列数 */
+        gap: 12px;
+    }
+}
+
+
+h1 {
+    color: #4a90e2;
+    margin-bottom: 20px;
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.card {
+    background-color: #4a90e2;
+    color: white;
+    border-radius: 10px;
+    padding: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 18px;
+    font-weight: bold;
+}
+.card {
+    padding: 12px;
+    font-size: 16px;
+}
+
+@media (max-width: 768px) {
+    .card {
+        padding: 10px;
+        font-size: 14px;
+    }
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.card.selected {
+    background-color: #ff6b6b;
+}
+
+.progress-container {
+    width: 100%;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.progress-bar {
+    height: 20px;
+    background-color: #4ecdc4;
+    width: 0%;
+    transition: width 0.5s ease;
+}
+
+.completed-words {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.completed-word {
+    background-color: #4ecdc4;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.card {
+    padding: 12px;
+    font-size: 16px;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .card {
+        padding: 10px;
+        font-size: 14px;
+    }
+}
+
+h1 {
+    text-align: center;
+}
+
+
+/*
+.game-board {
+    display: grid;
+    place-items: center; !* 网格项居中 *!
+}*/
+/* 在文件末尾添加以下样式 */
+
+.hanzi-container {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.hanzi-container h2 {
+    color: #4a90e2;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.hanzi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); /* 改为auto-fit自适应 */
+    gap: 15px;
+    justify-items: center;
+    align-items: start; /* 顶部对齐 */
+}
+
+/* 修改已完成汉字区域样式 */
+.hanzi-item {
+    background-color: white;
+    border-radius: 8px;
+    padding: 5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+    min-height: 80px;
+    width: 100%; /* 让项目占满网格单元 */
+    max-width: 100px; /* 限制最大宽度 */
+}
+.hanzi-item:hover {
+    transform: translateY(-5px);
+}
+
+.hanzi-character {
+    width: 50px;
+    height: 50px;
+    margin: 0 auto 5px;
+}
+
+/* 拼音样式 */
+.hanzi-pinyin {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 3px;
+    text-align: center;
+    white-space: nowrap; /* 防止换行 */
+    overflow: hidden;
+    text-overflow: ellipsis; /* 超出显示省略号 */
+}
+
+.hanzi-label {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+@media (max-width: 768px) {
+    .hanzi-grid {
+        grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+        gap: 10px;
+    }
+
+    .hanzi-item {
+        padding: 3px;
+        min-height: 70px;
+        max-width: 80px;
+    }
+
+    .hanzi-character {
+        width: 40px;
+        height: 40px;
+    }
+
+    .hanzi-pinyin {
+        font-size: 12px;
+    }
+}
+/* 练习区域样式 */
+#lianxiContainer {
+    padding: 20px;
+    background-color: #fff3cd;
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+#lianxiContainer h2 {
+     color: #1976d2;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.lianxi-controls {
+     display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.lianxi-controls button {
+    background-color: #ffc107;
+    color: #212529;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 0;
+    transition: background-color 0.3s;
+    white-space: nowrap;
+}
+
+.lianxi-controls button:hover {
+    background-color: #e0a800;
+}
+
+.lianxi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 20px;
+    justify-items: center;
+}
+
+.lianxi-item {
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.lianxi-item:hover {
+    transform: translateY(-5px);
+}
+
+.lianxi-character {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 10px;
+}
+
+.lianxi-label {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+.lianxi-mode-indicator {
+    font-size: 14px;
+    color: #666;
+    margin-top: 5px;
+}
+
+.lianxi-pinyin {
+    font-size: 14px;
+    color: #666;
+    margin-top: 3px;
+    font-style: italic;
+}
+
+.lianxi-pinyin {
+    font-size: 24px !important; /* 强制放大 */
+    font-weight: bold !important;
+    color: #333 !important;
+    margin: 10px 0 !important;
+    text-align: center !important;
+}
+
+/* 平板适配 */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .hanzi-grid {
+        grid-template-columns: repeat(auto-fit, minmax(85px, 1fr));
+        gap: 12px;
+    }
+}
+
+/* 桌面端适配 */
+@media (min-width: 1025px) {
+    .hanzi-grid {
+        grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+        gap: 15px;
+    }
+}
+
+/* 保持正常的从左到右排列 */
+.hanzi-grid {
+    display: flex;
+    flex-direction: row; /* 默认就是从左到右 */
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: flex-start;
+}
+
+.hanzi-item {
+    background-color: white;
+    border-radius: 8px;
+    padding: 5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    min-height: 80px;
+    width: 80px;
+    flex-shrink: 0; /* 防止项目被压缩 */
+}
+
+/* 朗读练习区域样式 */
+#landuContainer {
+    padding: 20px;
+    background-color: #e3f2fd;
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+#landuContainer h2 {
+    color: #1976d2;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.landu-display {
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.structure-display {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.part {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: #bbdefb;
+    border-radius: 8px;
+    margin: 0 5px;
+    font-weight: bold;
+    color: #0d47a1;
+}
+
+.plus, .equals {
+    margin: 0 10px;
+    color: #666;
+    font-weight: bold;
+}
+
+.result-hanzi {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: #c8e6c9;
+    border-radius: 8px;
+    margin: 0 5px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #1b5e20;
+}
+
+.pinyin-display {
+    font-size: 18px;
+    color: #666;
+    font-style: italic;
+    margin-top: 10px;
+}
+
+.landu-controls {
+    text-align: center;
+}
+
+.landu-controls button {
+    background-color: #2196f3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 0 10px;
+    transition: background-color 0.3s;
+}
+
+.landu-controls button:hover {
+    background-color: #1976d2;
+}
+
+.landu-controls button:disabled {
+    background-color: #bdbdbd;
+    cursor: not-allowed;
+}
+
+#landuProgress {
+    margin-left: 20px;
+    color: #666;
+    font-weight: bold;
+}
+
+
+/* 部件容器样式 */
+.part-container {
+    display: inline-block;
+    text-align: center;
+    margin: 0 5px;
+}
+
+/* 部件拼音样式 */
+.part-pinyin {
+    font-size: 14px;
+    color: #666;
+    margin-top: 3px;
+    font-style: italic;
+}
+
+/* 调整部件样式以适应拼音显示 */
+.part {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: #bbdefb;
+    border-radius: 8px;
+    font-weight: bold;
+    color: #0d47a1;
+}
+
+
+/* 调整整体结构显示样式 */
+.structure-display {
+    font-size: 24px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* 部件容器样式 */
+.part-container {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 8px;
+    min-width: 60px;
+}
+
+/* 部件样式 */
+.part {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: #bbdefb;
+    border-radius: 8px;
+    margin: 0;
+    font-weight: bold;
+    color: #0d47a1;
+    text-align: center;
+}
+
+/* 结果汉字样式 */
+.result-hanzi {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: #c8e6c9;
+    border-radius: 8px;
+    margin: 0;
+    font-size: 28px;
+    font-weight: bold;
+    color: #1b5e20;
+    text-align: center;
+}
+
+/* 部件拼音样式 */
+.part-pinyin {
+    font-size: 14px;
+    color: #666;
+    margin-top: 5px;
+    font-style: italic;
+    text-align: center;
+    min-height: 20px;
+}
+
+/* 加号和等号样式 */
+.plus, .equals {
+    margin: 0 10px;
+    color: #666;
+    font-weight: bold;
+    align-self: flex-end;
+    margin-bottom: 10px;
+}
+
+#landuProgress {
+    margin-left: 20px;
+    color: #666;
+    font-weight: bold;
+}
+
+/* 朗读练习区汉字展示容器 */
+.landu-hanzi-container {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.landu-hanzi-container h3 {
+    color: #1976d2;
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.landu-hanzi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+    gap: 10px;
+    justify-items: center;
+    align-items: start;
+}
+
+/*.landu-hanzi-item {
+    background-color: #e3f2fd;
+    border-radius: 8px;
+    padding: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+    width: 100%;
+    max-width: 70px;
+}
+
+.landu-hanzi-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}*/
+
+.landu-hanzi-character {
+    width: 40px;
+    height: 40px;
+    margin: 0 auto 5px;
+}
+
+.landu-hanzi-pinyin {
+    font-size: 12px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.card.selected {
+    background-color: #ff6b6b;
+}
+
+/* 匹配成功透明弹窗样式 */
+.success-popup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.5);
+    width: 350px;
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+/*radial-gradient(circle, rgba(78, 205, 196, 0.2) 0%, rgba(78, 205, 196, 0.05) 70%, rgba(78, 205, 196, 0) 100%);
+ */   border-radius: 50%;
+    box-shadow: 0 0 60px rgba(8, 93, 237, 0.3),
+                inset 0 0 40px rgba(12, 43, 166, 0.1);
+    opacity: 0;
+    z-index: 1000;
+    pointer-events: none;
+    transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    backdrop-filter: blur(5px);
+    border: 2px solid rgba(3, 88, 246, 0.3);
+}
+
+.success-popup.show {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+.success-popup.hide {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0;
+    filter: blur(10px);
+}
+
+.success-hanzi-canvas {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.landu-hanzi-pinyin {
+    font-size: 12px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.landu-hanzi-zuci {
+    font-size: 11px;
+    color: #666;
+    text-align: center;
+    margin-top: 4px;
+    padding: 2px 4px;
+    background-color: #f0f7ff;
+    border-radius: 4px;
+    line-height: 1.3;
+    min-height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+.landu-controls button:hover {
+    background-color: #1976d2;
+}
+
+/* 课程选择器专用样式 */
+.landu-lesson-select {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.landu-lesson-select select {
+    background-color: white;
+    color: #333;
+    border: 1px solid #ddd;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s;
+    min-width: 200px;
+}
+
+.landu-lesson-select select:hover {
+    border-color: #4a90e2;
+    box-shadow: 0 2px 5px rgba(74, 144, 226, 0.2);
+}
+
+.landu-lesson-select select:focus {
+    border-color: #4a90e2;
+    box-shadow: 0 0 5px rgba(74, 144, 226, 0.3);
+}
+
+.hint-container {
+    margin-top: 20px;
+    border-top: 2px solid #e0e0e0;
+    padding-top: 15px;
+}
+
+.hint-toggle-btn {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.hint-toggle-btn:hover {
+    background-color: #3a7bc8;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.hint-content {
+    animation: fadeIn 0.3s ease;
+}
+
+.landu-hanzi-container {
+    margin-top: 15px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    border: 1px solid #e0e0e0;
+}
+
+.landu-hanzi-container h3 {
+    color: #4a90e2;
+    font-size: 16px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.landu-hanzi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+    gap: 10px;
+    padding: 10px;
+}
+
+.landu-hanzi-item {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 8px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.3s ease;
+    margin: 0 10px;
+}
+
+.landu-hanzi-item:hover {
+    border-color: #4a90e2;
+    box-shadow: 0 2px 8px rgba(74, 144, 226, 0.2);
+    transform: translateY(-2px);
+}
+
+.landu-hanzi-character {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 5px;
+}
+
+.landu-hanzi-pinyin {
+    font-size: 12px;
+    color: #666;
+    text-align: center;
+    margin-bottom: 3px;
+}
+
+.landu-hanzi-zuci {
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    padding: 2px 4px;
+    background-color: #f0f7ff;
+    border-radius: 4px;
+    line-height: 1.3;
+    min-height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    word-wrap: break-word;
+    white-space: normal;
+}
