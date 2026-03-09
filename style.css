@@ -165,6 +165,29 @@ body {
         text-align: center;
     }
 
+    /* 朗读区控制按钮移动端样式 */
+    .landu-controls {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: nowrap;
+        gap: 5px;
+    }
+
+    .landu-controls button {
+        padding: 8px 12px;
+        font-size: 13px;
+        margin: 0;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+
+    #landuProgress {
+        margin-left: 5px;
+        font-size: 12px;
+        white-space: nowrap;
+    }
+
     .game-board {
         grid-template-columns: repeat(3, 1fr); /* 移动端减少列数 */
         gap: 8px;
